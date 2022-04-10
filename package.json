@@ -2,12 +2,25 @@
   "name": "chef-minute-react-pwa",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@mui/icons-material": "^5.6.0",
+    "@mui/material": "^5.6.0",
+    "@mui/styles": "^5.6.0",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router": "^6.3.0",
+    "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.0",
     "web-vitals": "^0.2.4",
     "workbox-background-sync": "^5.1.4",
@@ -21,13 +34,12 @@
     "workbox-range-requests": "^5.1.4",
     "workbox-routing": "^5.1.4",
     "workbox-strategies": "^5.1.4",
-    "workbox-streams": "^5.1.4"
+    "workbox-streams": "^5.1.4",
+    "yup": "^0.32.11"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+  "devDependencies": {
+    "eslint": "^8.12.0",
+    "prettier": "^2.6.2"
   },
   "eslintConfig": {
     "extends": [

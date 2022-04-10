@@ -1,0 +1,184 @@
+:root {
+    --dark-gray: #0f1011;
+    --main-orange: #e16111;
+    --yellow: #f9d162;
+    --dark-green: #2e8a56;
+    --light-green: #36c172;
+    --error-red: #c70000;
+    --light-red: #e13939;
+    --grey: #9ca2a4;
+    --light-grey: #d4d6d7;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Nunito Sans", "Roboto", Arial, Helvetica, sans-serif;
+    font-size: 12pt;
+    font-weight: normal;
+}
+
+/* Splash Screen */
+
+.splash {
+    background-color: var(--dark-gray);
+    display: flex;
+    z-index: 999;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
+
+#logoSplash {
+    width: 80vw;
+}
+
+/* Sign Up Screen */
+
+.signUpScreen {
+    position: fixed;
+    top: 0;
+    margin: 30px 0;
+    opacity: 1;
+}
+
+#logoSignUp {
+    width: 29vw;
+}
+
+.signUpHeader {
+    display: flex;
+    height: 20vh;
+    width: 100vw;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.signUpHeader h2 {
+    margin-top: 20px;
+    font-weight: 700;
+    font-size: 1.5rem;
+    font-family: "Quicksand", Arial, sans-serif;
+}
+
+.signUpForm {
+    margin: 50px 15vw 25px;
+}
+
+.formField {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 30px;
+}
+
+.formField label {
+    padding-bottom: 8px;
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+
+.formField input,
+.formField select {
+    flex: 1;
+    width: 90%;
+    padding: 0.65rem 0.7rem;
+    color: #000;
+    background: #fff;
+    border: thin solid var(--grey);
+    border-radius: 0.45rem;
+}
+
+.formField select {
+    width: 75%;
+}
+
+.btnSection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10vh;
+}
+
+.getStartedBtn {
+    width: 50vw;
+    height: 7vh;
+    border-radius: 15px;
+    border: 0px;
+    background-color: var(--main-orange);
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: 700;
+    box-shadow: 0px 0px 10px -2px rgba(15, 16, 17, 0.75);
+}
+
+/* Home Screen */
+
+.homeScreen {
+    position: fixed;
+    top: 0;
+    margin: 15px;
+    width: 95%;
+}
+
+.homeHeader {
+    display: flex;
+    align-items: center;
+    width: 98%;
+}
+
+.greeting {
+    font-family: "Quicksand", sans-serif;
+    margin-left: 10px;
+}
+
+.profileBtn {
+    margin-left: auto;
+}
+
+.searchSection h1,
+.searchSection span {
+    font-weight: 700;
+    margin: 25px 0 20px;
+    font-size: 2.2rem;
+}
+
+#searchInput {
+    padding-left: 15px;
+    background: url("../../public/assets/search-icon.png") no-repeat left;
+    background-size: 20px 20px;
+    background-position: 10px;
+    text-indent: 30px;
+}
+
+.underConstruction {
+    margin-top: 50px;
+}
+
+.underConstruction h1 {
+    font-size: 3.2rem;
+    text-align: center;
+}
+
+/* General Util classes */
+
+.hidden {
+    display: none;
+}
+
+.fade {
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.disabled {
+    background-color: var(--light-grey);
+    color: #a8a5a3;
+}
+
+.textOrange {
+    color: var(--main-orange);
+}

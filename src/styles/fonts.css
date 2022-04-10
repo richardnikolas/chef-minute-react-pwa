@@ -1,0 +1,48 @@
+/** Quicksand */
+
+@font-face {
+    font-family: "Quicksand";
+    font-style: "normal";
+    font-weight: 400;
+    font-display: "block";
+    src: url("../../public/fonts/Quicksand-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Quicksand";
+    font-style: "normal";
+    font-weight: 600;
+    font-display: "block";
+    src: url("../../public/fonts/Quicksand-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Quicksand";
+    font-style: "normal";
+    font-weight: 700;
+    font-display: "block";
+    src: url("../../public/fonts/Quicksand-Bold.ttf") format("truetype");
+}
+
+/** Nunito Sans */
+
+@font-face {
+    font-family: "Nunito Sans";
+    font-size: "normal";
+    font-weight: 400;
+    src: url("../../public/fonts/NunitoSans-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Nunito Sans";
+    font-size: "normal";
+    font-weight: 600;
+    src: url("../../public/fonts/NunitoSans-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Nunito Sans";
+    font-size: "normal";
+    font-weight: 700;
+    src: url("../../public/fonts/NunitoSans-Bold.ttf") format("truetype");
+}
