@@ -2,6 +2,8 @@ import React from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import SplashPage from "./views/SplashPage";
 import SignUpPage from "./views/SignUpPage";
+import HomePage from "./views/Home/HomePage";
+import RecipePage from "./views/RecipePage";
 
 const Router = () => {
     const something = undefined;
@@ -10,10 +12,9 @@ const Router = () => {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<SplashPage />} />
-                <Route path="/login" element={<SignUpPage />} />
-                <Route path="/sign-up" element={<></>} />
-                <Route path="/home" element={<></>} />
-                <Route path="/recipe" element={<></>} />
+                <Route path="/sign-up" element={<SignUpPage />} />
+                <Route path="/home" element={<HomePage />} />
+                <Route path="/recipe" element={<RecipePage />} />
                 <Route path="/new-recipe" element={<></>} />
             </Routes>
         </BrowserRouter>

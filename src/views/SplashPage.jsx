@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 
@@ -19,9 +19,17 @@ const SplashPage = () => {
     const classes = useStyles();
     const navigate = useNavigate();
 
-    setTimeout(() => {
-        navigate("/login");
-    }, [2500]);
+    useEffect(() => {
+        const storedUser = localStorage.getItem("storedUser");
+
+        if (storedUser) {
+            navigate("/home");
+        } else {
+            setTimeout(() => {
+                navigate("/sign-up");
+            }, [1000]);
+        }
+    }, []);
 
     return (
         <div className={classes.root}>

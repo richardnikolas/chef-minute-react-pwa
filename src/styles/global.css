@@ -24,8 +24,6 @@
     background-color: var(--dark-gray);
     display: flex;
     z-index: 999;
-    width: 100vw;
-    height: 100vh;
     align-items: center;
     justify-content: center;
     opacity: 1;
@@ -36,13 +34,6 @@
 }
 
 /* Sign Up Screen */
-
-.signUpScreen {
-    position: fixed;
-    top: 0;
-    margin: 30px 0;
-    opacity: 1;
-}
 
 #logoSignUp {
     width: 29vw;
@@ -133,7 +124,6 @@
 
 .greeting {
     font-family: "Quicksand", sans-serif;
-    margin-left: 10px;
 }
 
 .profileBtn {
@@ -143,9 +133,13 @@
 .searchSection h1,
 .searchSection span {
     font-weight: 700;
-    margin: 25px 0 20px;
+    margin: 20px 0 20px;
     font-size: 2.2rem;
 }
+
+/* .searchInput input {
+    padding: 14px !important;
+} */
 
 #searchInput {
     padding-left: 15px;
@@ -162,6 +156,39 @@
 .underConstruction h1 {
     font-size: 3.2rem;
     text-align: center;
+}
+
+.chipsSection {
+    display: flex;
+    margin: 25px 0 25px;
+    overflow-x: auto;
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
+}
+
+.chipsSection::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+}
+
+.filterChip {
+    width: "fit-content";
+    border: 0;
+    border-radius: 15px;
+    background-color: var(--light-grey);
+    padding: 10px;
+    margin-right: 8px;
+}
+
+.filterChipActive {
+    background-color: var(--yellow);
+}
+
+.recipesSection {
+}
+
+.recipesSection h1 {
+    font-size: 1.75rem;
+    font-weight: 600;
 }
 
 /* General Util classes */
@@ -187,4 +214,19 @@
 .flexAlignCenter {
     display: flex;
     align-items: center;
+}
+
+.flexJustifyCenter {
+    display: flex;
+    justify-content: center;
+}
+
+.flexSpaceEvenly {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.flexSpaceBetween {
+    display: flex;
+    justify-content: space-between;
 }
