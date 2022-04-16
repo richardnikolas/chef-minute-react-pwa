@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { makeStyles } from "@mui/styles";
+import { useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
@@ -46,40 +47,51 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const RecipeCard = (recipe) => {
+const RecipeCard = ({ recipe }) => {
     const classes = useStyles();
+    const navigate = useNavigate();
 
     return (
-        <Paper className={classes.paper} elevation={3}>
+        <Paper
+            className={classes.paper}
+            elevation={3}
+            onClick={() => navigate(`/recipe/${recipe.id}`)}
+        >
             <Grid container className={classes.content}>
-                <FavoriteBorderIcon
-                    color="primary"
-                    style={{ position: "absolute", top: 12, right: 10 }}
-                />
+                {recipe.isFavorite ? (
+                    <FavoriteIcon
+                        color="primary"
+                        style={{ position: "absolute", top: 12, right: 10 }}
+                    />
+                ) : (
+                    <FavoriteBorderIcon
+                        color="primary"
+                        style={{ position: "absolute", top: 12, right: 10 }}
+                    />
+                )}
 
                 <Grid item xs={12} className="flexJustifyCenter">
                     <div
                         className={classes.cardImg}
                         style={{
-                            backgroundImage:
-                                "url('https://s2.glbimg.com/9zc9T-9LwXwKG_8XOq_9EF67bSQ=/620x455/e.glbimg.com/og/ed/f/original/2021/04/30/receita-hamburguer-smash-burguer-bacon-cheddaar.jpg')"
+                            backgroundImage: `url(${recipe.photoUrl})`
                         }}
                     />
                 </Grid>
 
                 <Grid item xs={12} className="flexJustifyCenter">
-                    <p className={classes.title}>Chef's Burger</p>
+                    <p className={classes.title}>{recipe.title}</p>
                 </Grid>
 
                 <Grid item xs={12} className="flexSpaceBetween">
                     <div className={classes.recipeDetails}>
                         <AccessTimeIcon color="primary" fontSize="small" />
-                        <p>40 min</p>
+                        <p>{recipe.timeToPrepare} min</p>
                     </div>
 
                     <div className={classes.recipeDetails}>
                         <StarBorderIcon color="primary" fontSize="small" />
-                        <p>4.5</p>
+                        <p>{recipe.rating}</p>
                     </div>
                 </Grid>
             </Grid>

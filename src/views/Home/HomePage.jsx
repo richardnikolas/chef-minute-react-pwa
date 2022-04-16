@@ -1,17 +1,14 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import { makeStyles } from "@mui/styles";
 import Grid from "@mui/material/Grid";
 import clsx from "clsx";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import FormControl from "@mui/material/FormControl";
 import InputAdornment from "@mui/material/InputAdornment";
-import Button from "@mui/material/Button";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import HomeIcon from "@mui/icons-material/Home";
 import { cuisineTypeChips } from "../../shared/constants";
 import RecipeCard from "./RecipeCard";
 import "../../styles/global.css";
@@ -19,15 +16,8 @@ import "../../styles/global.css";
 const useStyles = makeStyles((theme) => ({
     root: {
         padding: "15px 15px",
-        height: "92vh",
+        height: "100vh",
         overflow: "auto"
-    },
-    controlBar: {
-        display: "flex",
-        justifyContent: "space-evenly",
-        alignItems: "center",
-        height: "8vh",
-        backgroundColor: theme.palette.lightGray
     },
     title: {
         fontFamily: "Quicksand",
@@ -43,10 +33,14 @@ const useStyles = makeStyles((theme) => ({
         fontSize: "30px !important"
     },
     newRecipeBtn: {
-        width: "45px !important",
-        height: "45px !important",
+        position: "absolute !important",
+        right: 25,
+        bottom: 15,
         backgroundColor: `${theme.palette.darkGreen} !important`,
-        color: "#FFF !important"
+        color: "#FFF !important",
+        "& svg": {
+            fontSize: "2rem"
+        }
     }
 }));
 
@@ -55,114 +49,114 @@ const HomePage = () => {
     const storedUser = JSON.parse(localStorage.getItem("storedUser"));
 
     const [search, setSearch] = useState("");
-    const [chipsFiltering, setChipsFiltering] = useState(["All"]);
+    const [chipsFilter, setChipsFilter] = useState(["All"]);
 
-    const isFilteringByThisChip = useCallback((chip) => {
-        return chipsFiltering.find((c) => c === chip);
-    }, []);
+    const isFilteringByThisChip = (chip) => {
+        return chipsFilter.find((c) => c === chip);
+    };
+
+    const updateChipsFilter = (chip) => {
+        const index = chipsFilter.indexOf(chip);
+
+        if (index > -1) {
+            chipsFilter.splice(index, 1);
+        } else {
+            chipsFilter.push(chip);
+        }
+    };
 
     const recipeTest = {
         id: 1,
-        title: "Chef's Burger",
+        title: "Burgão do Chef",
         photoUrl:
-            "https://s2.glbimg.com/9zc9T-9LwXwKG_8XOq_9EF67bSQ=/620x455/e.glbimg.com/og/ed/f/original/2021/04/30/receita-hamburguer-smash-burguer-bacon-cheddaar.jpg"
+            "https://s2.glbimg.com/9zc9T-9LwXwKG_8XOq_9EF67bSQ=/620x455/e.glbimg.com/og/ed/f/original/2021/04/30/receita-hamburguer-smash-burguer-bacon-cheddaar.jpg",
+        description: "Muito delícia bom demais, recomendo",
+        rating: 4.5,
+        dificulty: "easy",
+        timeToPrepare: 55,
+        isFavorite: false
     };
 
     return (
-        <>
-            <Grid container className={classes.root}>
-                <Grid item xs={12} className="flexAlignCenter">
-                    <p className={classes.greeting}>
-                        Hello there, {storedUser.userName.split(" ")[0]}
-                    </p>
-                    <AccountCircleOutlinedIcon color="primary" className={classes.profileBtn} />
-                </Grid>
-
-                <Grid item xs={12} className="searchSection">
-                    <h1>
-                        What do you want
-                        <br />
-                        to <span className="textOrange">cook</span> today?
-                    </h1>
-
-                    <FormControl fullWidth>
-                        <OutlinedInput
-                            id="outlined-adornment-amount"
-                            value={search}
-                            onChange={(e) => setSearch(e.target.value)}
-                            placeholder="Search here"
-                            className="searchInput"
-                            startAdornment={
-                                <InputAdornment position="start">
-                                    <SearchIcon />
-                                </InputAdornment>
-                            }
-                        />
-                    </FormControl>
-                </Grid>
-
-                <Grid item xs={12}>
-                    <section className="chipsSection">
-                        {cuisineTypeChips.map((chip) => {
-                            return (
-                                <button
-                                    className={clsx("filterChip", {
-                                        filterChipActive: isFilteringByThisChip(chip)
-                                    })}
-                                    onClick={() => {
-                                        const currentChips = chipsFiltering;
-                                        currentChips.push(chip);
-                                        setChipsFiltering(currentChips);
-                                        console.log("Chips: ", currentChips);
-                                    }}
-                                    key={`key-${chip}`}
-                                >
-                                    {chip}
-                                </button>
-                            );
-                        })}
-                    </section>
-                </Grid>
-
-                <Grid item xs={12}>
-                    <section className="recipesSection">
-                        <h1>Your recipes</h1>
-
-                        <Grid container>
-                            <Grid item xs={6} style={{ marginTop: 30 }}>
-                                <RecipeCard recipe={{}} />
-                            </Grid>
-
-                            <Grid item xs={6} style={{ marginTop: 30 }}>
-                                <RecipeCard recipe={{}} />
-                            </Grid>
-
-                            <Grid item xs={6} style={{ marginTop: 30 }}>
-                                <RecipeCard recipe={{}} />
-                            </Grid>
-
-                            <Grid item xs={6} style={{ marginTop: 30 }}>
-                                <RecipeCard recipe={{}} />
-                            </Grid>
-
-                            <Grid item xs={6} style={{ marginTop: 30 }}>
-                                <RecipeCard recipe={{}} />
-                            </Grid>
-                        </Grid>
-                    </section>
-                </Grid>
+        <Grid container className={classes.root}>
+            <Grid item xs={12} className="flexAlignCenter">
+                <p className={classes.greeting}>Hello there, {storedUser.userName.split(" ")[0]}</p>
+                <AccountCircleOutlinedIcon color="primary" className={classes.profileBtn} />
             </Grid>
 
-            <Grid container className={classes.controlBar}>
-                <Button startIcon={<HomeIcon />}>Home</Button>
+            <Grid item xs={12} className="searchSection">
+                <h1>
+                    What do you want
+                    <br />
+                    to <span className="textOrange">cook</span> today?
+                </h1>
 
-                <Fab arial-label="new-recipe" className={classes.newRecipeBtn}>
+                <FormControl fullWidth>
+                    <OutlinedInput
+                        id="outlined-adornment-amount"
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                        placeholder="Search here"
+                        className="searchInput"
+                        startAdornment={
+                            <InputAdornment position="start">
+                                <SearchIcon />
+                            </InputAdornment>
+                        }
+                    />
+                </FormControl>
+            </Grid>
+
+            <Grid item xs={12}>
+                <section className="chipsSection">
+                    {cuisineTypeChips.map((chip) => {
+                        return (
+                            <button
+                                className={clsx("filterChip", {
+                                    filterChipActive: isFilteringByThisChip(chip)
+                                })}
+                                onClick={() => updateChipsFilter(chip)}
+                                key={`key-${chip}`}
+                            >
+                                {chip}
+                            </button>
+                        );
+                    })}
+                </section>
+            </Grid>
+
+            <Grid item xs={12}>
+                <section className="recipesSection">
+                    <h1>Your recipes</h1>
+
+                    <Grid container>
+                        <Grid item xs={6} style={{ marginTop: 30 }}>
+                            <RecipeCard recipe={recipeTest} />
+                        </Grid>
+
+                        <Grid item xs={6} style={{ marginTop: 30 }}>
+                            <RecipeCard recipe={recipeTest} />
+                        </Grid>
+
+                        <Grid item xs={6} style={{ marginTop: 30 }}>
+                            <RecipeCard recipe={recipeTest} />
+                        </Grid>
+
+                        <Grid item xs={6} style={{ marginTop: 30 }}>
+                            <RecipeCard recipe={recipeTest} />
+                        </Grid>
+
+                        <Grid item xs={6} style={{ marginTop: 30 }}>
+                            <RecipeCard recipe={recipeTest} />
+                        </Grid>
+                    </Grid>
+                </section>
+
+                <Fab arial-label="new-recipe" className={classes.newRecipeBtn} size="large">
                     <AddIcon />
                 </Fab>
-
-                <Button startIcon={<FavoriteBorderIcon />}>Favorites</Button>
             </Grid>
-        </>
+        </Grid>
     );
 };
 
