@@ -231,3 +231,8 @@
     display: flex;
     justify-content: space-between;
 }
+
+.flexJustifyEnd {
+    display: flex;
+    justify-content: end;
+}

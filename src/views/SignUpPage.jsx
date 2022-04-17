@@ -76,7 +76,7 @@ const SignUpPage = () => {
                     <h6 className={classes.title}>Sign Up</h6>
                 </Grid>
 
-                <Grid item xs={1}>
+                <Grid item>
                     <TextField
                         label="Name*"
                         onChange={(e) => setUserInfo({ ...userInfo, userName: e.target.value })}
@@ -84,7 +84,7 @@ const SignUpPage = () => {
                     />
                 </Grid>
 
-                <Grid item xs={1}>
+                <Grid item>
                     <TextField
                         label="Email*"
                         onChange={(e) => setUserInfo({ ...userInfo, userEmail: e.target.value })}
@@ -92,7 +92,7 @@ const SignUpPage = () => {
                     />
                 </Grid>
 
-                <Grid item xs={1}>
+                <Grid item>
                     <FormControl fullWidth>
                         <InputLabel id="user-chef-level">Chef Level*</InputLabel>
                         <Select
@@ -112,7 +112,7 @@ const SignUpPage = () => {
                     </FormControl>
                 </Grid>
 
-                <Grid item xs={1}>
+                <Grid item>
                     <FormControl fullWidth>
                         <InputLabel id="user-favorite-cuisine">Favorite Cuisine*</InputLabel>
                         <Select
@@ -137,7 +137,7 @@ const SignUpPage = () => {
                     </FormControl>
                 </Grid>
 
-                <Grid item xs={2}>
+                <Grid item>
                     <button className="getStartedBtn" onClick={() => validateFields()}>
                         Get Started
                     </button>

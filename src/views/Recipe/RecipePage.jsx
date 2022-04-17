@@ -8,7 +8,7 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { useStyles } from "../styles/RecipePageStyles";
+import { useStyles } from "../../styles/RecipePageStyles";
 
 const RecipePage = ({ recipe }) => {
     const classes = useStyles();

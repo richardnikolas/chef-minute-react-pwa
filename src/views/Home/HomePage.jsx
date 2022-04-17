@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useCallback } from "react";
 import { makeStyles } from "@mui/styles";
+import { useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import clsx from "clsx";
 import OutlinedInput from "@mui/material/OutlinedInput";
@@ -46,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
 
 const HomePage = () => {
     const classes = useStyles();
+    const navigate = useNavigate();
     const storedUser = JSON.parse(localStorage.getItem("storedUser"));
 
     const [search, setSearch] = useState("");
@@ -152,7 +154,12 @@ const HomePage = () => {
                     </Grid>
                 </section>
 
-                <Fab arial-label="new-recipe" className={classes.newRecipeBtn} size="large">
+                <Fab
+                    arial-label="new-recipe"
+                    className={classes.newRecipeBtn}
+                    size="large"
+                    onClick={() => navigate("/new-recipe")}
+                >
                     <AddIcon />
                 </Fab>
             </Grid>
