@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: "center",
         fontWeight: 700,
         marginTop: 10,
-        fontSize: "0.8rem"
+        fontSize: "3.5vw"
     },
     cardImg: {
         width: 70,
@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         alignItems: "center",
         "& p": {
-            fontSize: "0.7rem",
+            fontSize: "0.8rem",
             marginLeft: 3
         }
     }

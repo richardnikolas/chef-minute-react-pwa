@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 import { makeStyles } from "@mui/styles";
 import { useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
@@ -11,7 +11,10 @@ import AddIcon from "@mui/icons-material/Add";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { cuisineTypeChips } from "../../shared/constants";
+import { getStoredUser } from "../../shared/functions";
 import RecipeCard from "./RecipeCard";
+import { useLiveQuery } from "dexie-react-hooks";
+import { db } from "../../db/indexedDb";
 import "../../styles/global.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -48,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
 const HomePage = () => {
     const classes = useStyles();
     const navigate = useNavigate();
-    const storedUser = JSON.parse(localStorage.getItem("storedUser"));
+    const storedUser = getStoredUser();
 
     const [search, setSearch] = useState("");
     const [chipsFilter, setChipsFilter] = useState(["All"]);

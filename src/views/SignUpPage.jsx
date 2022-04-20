@@ -7,8 +7,8 @@ import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import * as yup from "yup";
 import { StandardSnackbar } from "../shared/components";
+import { userSchema } from "../db/schemas";
 import "../styles/global.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -39,13 +39,6 @@ const SignUpPage = () => {
         userName: null,
         chefLevel: "",
         favoriteCuisine: ""
-    });
-
-    const userSchema = yup.object().shape({
-        userName: yup.string().min(3).required(),
-        userEmail: yup.string().email().required(),
-        chefLevel: yup.string().required(),
-        favoriteCuisine: yup.string().required()
     });
 
     const validateFields = async () => {
