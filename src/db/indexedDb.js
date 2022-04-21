@@ -1,10 +1,13 @@
 import Dexie from "dexie";
+import { populateDb } from "./populateDb";
 
 export const db = new Dexie("chefMinute");
 
-db.version(2).stores({
-    recipe: "++id, name, userEmail"
+db.version(3).stores({
+    recipe: "++id, name"
 });
+
+db.on("populate", populateDb);
 
 /*
     recipe {
@@ -17,7 +20,6 @@ db.version(2).stores({
         photoUrl: string,
         isFavorite: boolean,
         ingredients: string/array/text,
-        directions: string/text,
-        userEmail: string
+        directions: string/text
     }
 */

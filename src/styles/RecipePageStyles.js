@@ -2,6 +2,7 @@ import { makeStyles } from "@mui/styles";
 
 export const useStyles = makeStyles((theme) => ({
     root: {
+        height: "98vh",
         backgroundColor: theme.palette.primary.main
     },
     recipePhoto: {

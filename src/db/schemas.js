@@ -16,6 +16,5 @@ export const recipeSchema = yup.object().shape({
     photoUrl: yup.string(),
     isFavorite: yup.boolean(),
     ingredients: yup.array().min(1).required(),
-    directions: yup.array().min(1).required(),
-    userEmail: yup.string().email().required()
+    directions: yup.array().min(1).required()
 });

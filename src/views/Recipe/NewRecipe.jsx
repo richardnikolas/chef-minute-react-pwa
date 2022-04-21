@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 import Grid from "@mui/material/Grid";
@@ -10,7 +10,6 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import AddIcon from "@mui/icons-material/Add";
 import { StyledSlider, StandardSnackbar, StandardLoader } from "../../shared/components";
-import { getStoredUser } from "../../shared/functions";
 import { useStyles as useRecipeStyles } from "../../styles/RecipePageStyles";
 import { recipeSchema } from "../../db/schemas";
 import { db } from "../../db/indexedDb";
@@ -76,7 +75,6 @@ const useStyles = makeStyles((theme) => ({
 const NewRecipe = () => {
     const classes = useStyles();
     const recipeClasses = useRecipeStyles();
-    const storedUser = useMemo(() => getStoredUser(), []);
     const navigate = useNavigate();
 
     const [isLoading, setIsLoading] = useState(false);
@@ -97,8 +95,7 @@ const NewRecipe = () => {
         photoUrl: "",
         isFavorite: false,
         ingredients,
-        directions,
-        userEmail: storedUser.userEmail
+        directions
     });
 
     const updateIngredients = ({ newValue, index }) => {
