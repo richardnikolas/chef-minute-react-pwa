@@ -2,8 +2,8 @@ import Dexie from "dexie";
 
 export const db = new Dexie("chefMinute");
 
-db.version(1).stores({
-    recipe: "++id, name"
+db.version(2).stores({
+    recipe: "++id, name, userEmail"
 });
 
 /*

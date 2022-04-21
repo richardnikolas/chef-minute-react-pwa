@@ -73,12 +73,19 @@ const HomePage = () => {
         }
     };
 
-    useLiveQuery(() =>
-        db.recipe.toArray().then((result) => {
-            setDbRecipes(result);
-            setIsLoading(false);
-        })
-    );
+    useLiveQuery(() => {
+        db.recipe
+            .where("userEmail")
+            .equals(storedUser.userEmail)
+            .filter((r) => r.name.toLowerCase().includes(search.toLowerCase()))
+            .toArray()
+            .then((result) => {
+                setDbRecipes(result);
+                setTimeout(() => {
+                    setIsLoading(false);
+                }, [500]);
+            });
+    }, [search]);
 
     console.log("dbRecipes", dbRecipes);
 
