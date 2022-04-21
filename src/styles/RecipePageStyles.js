@@ -55,8 +55,9 @@ export const useStyles = makeStyles((theme) => ({
         display: "flex",
         alignItems: "center",
         "& p": {
-            fontSize: "0.8rem",
-            marginLeft: 3
+            fontSize: "0.9rem",
+            marginLeft: 3,
+            textTransform: "capitalize"
         }
     },
     dificultyIcon: {
@@ -94,7 +95,7 @@ export const useStyles = makeStyles((theme) => ({
             fontSize: "1.2rem"
         },
         "& p": {
-            paddingBottom: 3,
+            paddingBottom: 8,
             textAlign: "justify"
         }
     },

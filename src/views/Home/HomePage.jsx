@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useCallback } from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@mui/styles";
 import { useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
@@ -10,6 +10,7 @@ import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import { StandardLoader } from "../../shared/components";
 import { cuisineTypeChips } from "../../shared/constants";
 import { getStoredUser } from "../../shared/functions";
 import RecipeCard from "./RecipeCard";
@@ -20,7 +21,6 @@ import "../../styles/global.css";
 const useStyles = makeStyles((theme) => ({
     root: {
         padding: "15px 15px",
-        height: "100vh",
         overflow: "auto"
     },
     title: {
@@ -54,6 +54,9 @@ const HomePage = () => {
     const storedUser = getStoredUser();
 
     const [search, setSearch] = useState("");
+    const [isLoading, setIsLoading] = useState(true);
+    const [dbRecipes, setDbRecipes] = useState([]);
+    // eslint-disable-next-line no-unused-vars
     const [chipsFilter, setChipsFilter] = useState(["All"]);
 
     const isFilteringByThisChip = (chip) => {
@@ -70,17 +73,14 @@ const HomePage = () => {
         }
     };
 
-    const recipeTest = {
-        id: 1,
-        title: "Burgão do Chef",
-        photoUrl:
-            "https://s2.glbimg.com/9zc9T-9LwXwKG_8XOq_9EF67bSQ=/620x455/e.glbimg.com/og/ed/f/original/2021/04/30/receita-hamburguer-smash-burguer-bacon-cheddaar.jpg",
-        description: "Muito delícia bom demais, recomendo",
-        rating: 4.5,
-        dificulty: "easy",
-        timeToPrepare: 55,
-        isFavorite: false
-    };
+    useLiveQuery(() =>
+        db.recipe.toArray().then((result) => {
+            setDbRecipes(result);
+            setIsLoading(false);
+        })
+    );
+
+    console.log("dbRecipes", dbRecipes);
 
     return (
         <Grid container className={classes.root}>
@@ -134,27 +134,30 @@ const HomePage = () => {
                 <section className="recipesSection">
                     <h1>Your recipes</h1>
 
-                    <Grid container>
-                        <Grid item xs={6} style={{ marginTop: 30 }}>
-                            <RecipeCard recipe={recipeTest} />
+                    {isLoading ? (
+                        <StandardLoader />
+                    ) : (
+                        <Grid container>
+                            {dbRecipes ? (
+                                dbRecipes.map((rec, index) => {
+                                    return (
+                                        <Grid
+                                            item
+                                            xs={6}
+                                            style={{ marginTop: 30 }}
+                                            key={`key-recipe-${index}`}
+                                        >
+                                            <RecipeCard recipe={rec} />
+                                        </Grid>
+                                    );
+                                })
+                            ) : (
+                                <Grid item xs={12}>
+                                    <h2>No recipes created yet.</h2>
+                                </Grid>
+                            )}
                         </Grid>
-
-                        <Grid item xs={6} style={{ marginTop: 30 }}>
-                            <RecipeCard recipe={recipeTest} />
-                        </Grid>
-
-                        <Grid item xs={6} style={{ marginTop: 30 }}>
-                            <RecipeCard recipe={recipeTest} />
-                        </Grid>
-
-                        <Grid item xs={6} style={{ marginTop: 30 }}>
-                            <RecipeCard recipe={recipeTest} />
-                        </Grid>
-
-                        <Grid item xs={6} style={{ marginTop: 30 }}>
-                            <RecipeCard recipe={recipeTest} />
-                        </Grid>
-                    </Grid>
+                    )}
                 </section>
 
                 <Fab

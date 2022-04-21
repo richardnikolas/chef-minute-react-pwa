@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from "@mui/styles";
 import { useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
@@ -80,7 +80,7 @@ const RecipeCard = ({ recipe }) => {
                 </Grid>
 
                 <Grid item xs={12} className="flexJustifyCenter">
-                    <p className={classes.title}>{recipe.title}</p>
+                    <p className={classes.title}>{recipe.name}</p>
                 </Grid>
 
                 <Grid item xs={12} className="flexSpaceBetween">
@@ -98,20 +98,5 @@ const RecipeCard = ({ recipe }) => {
         </Paper>
     );
 };
-
-/*
-    recipe {
-        id: UUID,
-        name: string,
-        description: string,
-        rating: float,
-        dificulty: string,
-        timeToPrepare: integer,
-        photoUrl: string,
-        isFavorite: boolean,
-        ingredients: string/array/text,
-        directions: string/text
-    }
-*/
 
 export default RecipeCard;

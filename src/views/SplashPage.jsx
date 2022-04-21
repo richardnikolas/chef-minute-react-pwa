@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
@@ -23,7 +24,9 @@ const SplashPage = () => {
         const storedUser = localStorage.getItem("storedUser");
 
         if (storedUser) {
-            navigate("/home");
+            setTimeout(() => {
+                navigate("/home");
+            }, [1000]);
         } else {
             setTimeout(() => {
                 navigate("/sign-up");

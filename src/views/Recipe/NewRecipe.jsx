@@ -166,7 +166,8 @@ const NewRecipe = () => {
         const fullRecipe = {
             ...newRecipe,
             ingredients: onlyValidIngredients,
-            directions: onlyValidDirections
+            directions: onlyValidDirections,
+            createdAt: new Date()
         };
 
         console.log("fullRecipe", fullRecipe);
@@ -226,6 +227,10 @@ const NewRecipe = () => {
                                 onChange={(e) =>
                                     setNewRecipe({ ...newRecipe, description: e.target.value })
                                 }
+                                inputProps={{
+                                    maxLength: 99
+                                }}
+                                helperText="Max of 99 characters"
                                 style={{ width: "85vw" }}
                             />
                         </Grid>

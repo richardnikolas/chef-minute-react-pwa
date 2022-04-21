@@ -133,7 +133,7 @@
 .searchSection h1,
 .searchSection span {
     font-weight: 700;
-    margin: 20px 0 20px;
+    margin: 25px 0 20px;
     font-size: 2.2rem;
 }
 
@@ -184,7 +184,7 @@
 }
 
 .recipesSection {
-    margin-bottom: 35px;
+    margin: 10px 0 35px;
 }
 
 .recipesSection h1 {
@@ -234,5 +234,5 @@
 
 .flexJustifyEnd {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
 }
