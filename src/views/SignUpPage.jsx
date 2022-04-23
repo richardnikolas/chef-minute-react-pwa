@@ -13,10 +13,12 @@ import "../styles/global.css";
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        height: "100vh",
         display: "flex",
         alignItems: "center",
-        justifyContent: "space-evenly"
+        justifyContent: "space-evenly",
+        padding: "20px 20px",
+        minHeight: 700,
+        height: "100vh"
     },
     title: {
         fontFamily: "Quicksand",
@@ -72,7 +74,9 @@ const SignUpPage = () => {
                 <Grid item>
                     <TextField
                         label="Name*"
-                        onChange={(e) => setUserInfo({ ...userInfo, userName: e.target.value })}
+                        onChange={(e) =>
+                            setUserInfo({ ...userInfo, userName: e.target.value.toString().trim() })
+                        }
                         style={{ width: "75vw" }}
                     />
                 </Grid>
@@ -80,7 +84,12 @@ const SignUpPage = () => {
                 <Grid item>
                     <TextField
                         label="Email*"
-                        onChange={(e) => setUserInfo({ ...userInfo, userEmail: e.target.value })}
+                        onChange={(e) =>
+                            setUserInfo({
+                                ...userInfo,
+                                userEmail: e.target.value.toString().trim()
+                            })
+                        }
                         style={{ width: "75vw" }}
                     />
                 </Grid>
