@@ -1,5 +1,6 @@
 import { db } from "./indexedDb";
 
+// This function will populate the database at the first time it is created
 export async function populateDb() {
     await db.recipe.bulkAdd([
         {

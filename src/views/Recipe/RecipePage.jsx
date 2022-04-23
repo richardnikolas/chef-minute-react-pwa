@@ -35,7 +35,7 @@ const RecipePage = () => {
             } finally {
                 setTimeout(() => {
                     setIsLoading(false);
-                }, 500);
+                }, 400);
             }
         };
         if (!recipe) {
@@ -181,6 +181,7 @@ const RecipePage = () => {
                             )}
                         </Grid>
                     </Grid>
+
                     {isLoading ? <StandardLoader /> : null}
                 </>
             )}

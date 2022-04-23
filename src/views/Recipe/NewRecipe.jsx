@@ -113,14 +113,12 @@ const NewRecipe = () => {
     };
 
     const isRecipeValid = async (recipe) => {
-        console.log("newRecipe", recipe);
-
         try {
             await recipeSchema.validate(recipe);
             return true;
         } catch (err) {
             const error = { ...err };
-            console.log("err", error);
+            console.error(error);
 
             if (error.message === "name must be at least 2 characters") {
                 setSnackbarInfo({

@@ -2,6 +2,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
+import { getStoredUser } from "../shared/functions";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -21,7 +22,7 @@ const SplashPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const storedUser = localStorage.getItem("storedUser");
+        const storedUser = getStoredUser();
 
         if (storedUser) {
             setTimeout(() => {
@@ -38,7 +39,7 @@ const SplashPage = () => {
         <div className={classes.root}>
             <img
                 className={classes.splashImg}
-                src={process.env.PUBLIC_URL + "/assets/logo-splash.png"}
+                src={`${process.env.PUBLIC_URL}/assets/logo-splash.png`}
                 alt="Logo Splash"
             />
         </div>

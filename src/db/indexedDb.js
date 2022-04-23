@@ -11,7 +11,7 @@ db.on("populate", populateDb);
 
 /*
     recipe {
-        id: UUID,
+        id: ++int,
         name: string,
         description: string,
         rating: float,

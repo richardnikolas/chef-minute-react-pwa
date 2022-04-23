@@ -54,7 +54,8 @@ A _New Recipe Screen_ é onde o usuário poderá criar uma nova receita. Os camp
 -   Nota\*
 -   Ingredientes\* (no mínimo 1)
 -   Direções\* (no mínimo 1)
-    **OBS:** todos os campos marcados com (\*) são obrigatórios
+
+**OBS:** todos os campos marcados com (\*) são obrigatórios
 
 No final da tela existe o botão **Create** que valida os campos e, caso eles sejam válidos, cria a receita no banco de dados (IndexedDb) e redireciona o usuário de volta à _Home Screen_.
 

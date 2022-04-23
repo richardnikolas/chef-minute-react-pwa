@@ -82,7 +82,6 @@ const HomePage = () => {
                 setDbRecipes(result);
                 setTimeout(() => {
                     setIsLoading(false);
-                    console.log("dbRecipes", dbRecipes);
                 }, [350]);
             });
     }, [search]);
