@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
         fontSize: "30px !important"
     },
     newRecipeBtn: {
-        position: "absolute !important",
+        position: "fixed !important",
         right: 25,
         bottom: 15,
         backgroundColor: `${theme.palette.darkGreen} !important`,
@@ -63,15 +63,16 @@ const HomePage = () => {
         return chipsFilter.find((c) => c === chip);
     };
 
-    const updateChipsFilter = (chip) => {
-        const index = chipsFilter.indexOf(chip);
+    // TODO: implement chips filter
+    // const updateChipsFilter = (chip) => {
+    //     const index = chipsFilter.indexOf(chip);
 
-        if (index > -1) {
-            chipsFilter.splice(index, 1);
-        } else {
-            chipsFilter.push(chip);
-        }
-    };
+    //     if (index > -1) {
+    //         chipsFilter.splice(index, 1);
+    //     } else {
+    //         chipsFilter.push(chip);
+    //     }
+    // };
 
     useLiveQuery(() => {
         db.recipe
@@ -81,11 +82,10 @@ const HomePage = () => {
                 setDbRecipes(result);
                 setTimeout(() => {
                     setIsLoading(false);
+                    console.log("dbRecipes", dbRecipes);
                 }, [350]);
             });
     }, [search]);
-
-    console.log("dbRecipes", dbRecipes);
 
     return (
         <Grid container className={classes.root}>
@@ -125,7 +125,7 @@ const HomePage = () => {
                                 className={clsx("filterChip", {
                                     filterChipActive: isFilteringByThisChip(chip)
                                 })}
-                                onClick={() => updateChipsFilter(chip)}
+                                onClick={() => {}}
                                 key={`key-${chip}`}
                             >
                                 {chip}
@@ -150,6 +150,7 @@ const HomePage = () => {
                                             item
                                             xs={6}
                                             style={{ marginTop: 30 }}
+                                            className="flexJustifyCenter"
                                             key={`key-recipe-${index}`}
                                         >
                                             <RecipeCard recipe={rec} />
@@ -157,7 +158,7 @@ const HomePage = () => {
                                     );
                                 })
                             ) : (
-                                <Grid item xs={12}>
+                                <Grid item xs={12} style={{ textAlign: "center" }}>
                                     <h2>No recipes created yet.</h2>
                                 </Grid>
                             )}

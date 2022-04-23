@@ -90,7 +90,10 @@ const RecipePage = () => {
                             <div
                                 className={classes.recipePhoto}
                                 style={{
-                                    backgroundImage: `url(${recipe.photoUrl})`
+                                    backgroundColor: theme.palette.secondary.main,
+                                    backgroundImage: recipe.photoUrl
+                                        ? `url(${recipe.photoUrl})`
+                                        : `url("${process.env.PUBLIC_URL}/assets/no-image.png")`
                                 }}
                             />
                         </Grid>

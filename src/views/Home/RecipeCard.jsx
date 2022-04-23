@@ -1,5 +1,6 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
+import { useTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
@@ -27,7 +28,8 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: "center",
         fontWeight: 700,
         marginTop: 10,
-        fontSize: "3.5vw"
+        fontSize: "3.5vw",
+        textAlign: "center"
     },
     cardImg: {
         width: 70,
@@ -50,6 +52,7 @@ const useStyles = makeStyles((theme) => ({
 const RecipeCard = ({ recipe }) => {
     const classes = useStyles();
     const navigate = useNavigate();
+    const theme = useTheme();
 
     return (
         <Paper
@@ -74,7 +77,10 @@ const RecipeCard = ({ recipe }) => {
                     <div
                         className={classes.cardImg}
                         style={{
-                            backgroundImage: `url(${recipe.photoUrl})`
+                            backgroundColor: theme.palette.secondary.main,
+                            backgroundImage: recipe.photoUrl
+                                ? `url(${recipe.photoUrl})`
+                                : `url("${process.env.PUBLIC_URL}/assets/no-image.png")`
                         }}
                     />
                 </Grid>
