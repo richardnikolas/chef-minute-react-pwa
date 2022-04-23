@@ -35,7 +35,7 @@ export async function populateDb() {
         {
             name: "Pizza Example",
             description: "This is another recipe sample",
-            dificulty: "medium",
+            dificulty: "hard",
             rating: 4.7,
             timeToPrepare: 75,
             isFavorite: false,
